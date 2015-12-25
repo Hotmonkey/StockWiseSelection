@@ -53,7 +53,7 @@ namespace StockWiseSelection
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (tGetStock.ThreadState == ThreadState.Background)
+            if (tGetStock != null && tGetStock.ThreadState == ThreadState.Background)
             {
                 MessageBox.Show("筛选未完成！");
             }
@@ -63,7 +63,22 @@ namespace StockWiseSelection
             }
             else
             {
-                MessageBox.Show("这里要显示保存的对话框");
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "文本文件|*.txt";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    StreamWriter sw = File.CreateText(sfd.FileName);
+                    for (int i = 0; i < ScreenResult.Count - 1; i++ )
+                    {
+                        sw.Write(ScreenResult[i] + "\r\n");
+                    }
+                    if(ScreenResult.Count >= 1)
+                    {
+                        sw.Write(ScreenResult[ScreenResult.Count - 1]);
+                    }
+                    sw.Flush();
+                    sw.Close();
+                }
             }
         }
 
@@ -95,6 +110,7 @@ namespace StockWiseSelection
                 e.Handled = true;
             }
         }
+
     }
 
     class StockScreenArgs
@@ -120,8 +136,10 @@ namespace StockWiseSelection
 
         public StockScreenArgs(string beginDate, string endDate, int declineDayCount, TextBox tb, ScreenCallback sCallback)
         {
-            DateTime.ParseExact(beginDate, format, System.Globalization.CultureInfo.InvariantCulture);
-            DateTime.ParseExact(endDate, format, System.Globalization.CultureInfo.InvariantCulture);
+            if (DateTime.ParseExact(beginDate, format, System.Globalization.CultureInfo.InvariantCulture) > DateTime.ParseExact(endDate, format, System.Globalization.CultureInfo.InvariantCulture))
+            {
+                throw new Exception("date compare exception");
+            }
             this.beginDate = beginDate;
             this.endDate = endDate;
             this.declineDayCount = declineDayCount;
@@ -141,6 +159,7 @@ namespace StockWiseSelection
 
     class StockAction
     {
+        string[] headArray = new string[] { "sh600", "sh601", "sh603", "sz000", "sz300" };
         /// <summary>
         /// http获取数据
         /// </summary>
@@ -174,12 +193,15 @@ namespace StockWiseSelection
             ssa.ResultTb.Text = "开始筛选\r\n";
             List<string> result = new List<string>();
             StockUrl stockUrl = new StockUrl();
-            string[] headArray = new string[] { "sh600", "sh601", "sh603", "sz000", "sz300" };
             string EndDate = ssa.EndDate;
             string BeginDate = ssa.BeginDate;
             int headIndex = 0;
             int tailIndex = 0;
             string stockStr = "";
+            result.Add("开始时间：" + ssa.BeginDate);
+            result.Add("结束时间：" + ssa.EndDate);
+            result.Add("下跌天数：" + ssa.DeclineDayCount);
+            result.Add("----------------------------------------");
             for (headIndex = 0; headIndex < headArray.Length; headIndex++)
             {
                 for (tailIndex = 1; tailIndex <= 999; tailIndex++)

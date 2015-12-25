@@ -16,3 +16,12 @@ C:\Users\kanye\Documents\Visual Studio 2015\Projects\StockWiseSelection\StockWis
 C:\Users\kanye\Documents\Visual Studio 2015\Projects\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.Form1.resources
 C:\Users\kanye\Documents\Visual Studio 2015\Projects\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.Properties.Resources.resources
 C:\Users\kanye\Documents\Visual Studio 2015\Projects\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.csproj.GenerateResource.Cache
+D:\Github\StockWiseSelection\StockWiseSelection\bin\Debug\StockWiseSelection.exe.config
+D:\Github\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.exe
+D:\Github\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.pdb
+D:\Github\StockWiseSelection\StockWiseSelection\bin\Debug\StockWiseSelection.exe
+D:\Github\StockWiseSelection\StockWiseSelection\bin\Debug\StockWiseSelection.pdb
+D:\Github\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.csprojResolveAssemblyReference.cache
+D:\Github\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.Form1.resources
+D:\Github\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.Properties.Resources.resources
+D:\Github\StockWiseSelection\StockWiseSelection\obj\Debug\StockWiseSelection.csproj.GenerateResource.Cache
